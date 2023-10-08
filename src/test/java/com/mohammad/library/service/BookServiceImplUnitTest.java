@@ -28,7 +28,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ContextConfiguration(classes = {BookServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-class BookServiceImplTest {
+class BookServiceImplUnitTest {
 	@MockBean
 	private BookRepository bookRepository;
 
