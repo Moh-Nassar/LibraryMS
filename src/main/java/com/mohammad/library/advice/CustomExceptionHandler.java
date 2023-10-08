@@ -12,13 +12,11 @@ public class CustomExceptionHandler {
 
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<String> handleCustomException(CustomException ex) {
-		// Create an appropriate HTTP response for the exception
 		return ResponseEntity.status(ex.getHttpStatus()).body(ex.getMessage());
 	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleOtherExceptions(Exception ex) {
-		// Handle other exceptions, log them, and return an appropriate response
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected Error!");
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected Error!: " + ex.getMessage());
 	}
 }

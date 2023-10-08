@@ -105,5 +105,4 @@ public class BookServiceImpl implements BookService {
 		book.setQuantity(book.getQuantity() + 1);
 		this.updateBook(book);
 	}
-
 }
