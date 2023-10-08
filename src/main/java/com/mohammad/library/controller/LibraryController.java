@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.mohammad.library.model.Book;
 import com.mohammad.library.service.BookService;
-import com.mohammad.library.service.BookServiceImpl;
-import com.mohammad.library.service.LibraryServiceImpl;
+import com.mohammad.library.service.LibraryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,7 +33,7 @@ public class LibraryController {
 	BookService bookService;
 
 	@Autowired
-	LibraryServiceImpl libraryService;
+	LibraryService libraryService;
 	@GetMapping("/test")
 	public String test(){
 		return "Hello Library";

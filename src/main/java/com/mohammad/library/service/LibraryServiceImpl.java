@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LibraryServiceImpl {
+public class LibraryServiceImpl implements LibraryService {
 
 	@Autowired
-	BookServiceImpl bookService;
+	BookService bookService;
 
 	@Autowired
-	UserServiceImpl userService;
+	UserService userService;
 
 	/**
 	 * User borrows a Book

@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface BookRepository extends MongoRepository<Book, ObjectId> {
 	@Query("{quantity: {$gt: 0}}")
-	public List<Book> availableBooks();
+	List<Book> availableBooks();
 }

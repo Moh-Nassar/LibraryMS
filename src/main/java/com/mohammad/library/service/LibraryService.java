@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface LibraryService {
 
-	public void returnBook(String userId, String bookId);
+	void returnBook(String userId, String bookId);
 
-	public void borrowBook(String userId, String bookId);
+	void borrowBook(String userId, String bookId);
 }
