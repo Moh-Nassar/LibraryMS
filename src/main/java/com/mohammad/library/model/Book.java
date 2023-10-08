@@ -23,4 +23,5 @@ public class Book {
 	Integer quantity;
 	String genre;
 	String type;
+	float price;
 }

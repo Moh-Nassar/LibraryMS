@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.mohammad.library.model.Book;
+import com.mohammad.library.model.CustomException;
 import com.mohammad.library.service.BookService;
 import com.mohammad.library.service.LibraryService;
 
@@ -66,7 +67,7 @@ public class LibraryController {
 	@GetMapping("/book/byId")
 	public ResponseEntity<Map<String, Book>> doGetById(
 			@RequestParam String id
-	){
+	) throws CustomException {
 		Map<String, Book> response = new HashMap<>();
 
 		Book book = bookService.getBookById(id);
@@ -80,7 +81,7 @@ public class LibraryController {
 	@PutMapping("/book/update")
 	public ResponseEntity<String> doUpdateBook(
 			@RequestBody String bookJSON
-	){
+	) throws CustomException {
 		Book book;
 		try {
 			book = new ObjectMapper().readValue(bookJSON, Book.class);
@@ -106,7 +107,7 @@ public class LibraryController {
 	public ResponseEntity<String> doBorrow(
 			@RequestParam String userId,
 			@RequestParam String bookId
-	){
+	) throws CustomException {
 		libraryService.borrowBook(userId, bookId);
 		return new ResponseEntity<>("Book " + bookId + " successfully borrowed by " + userId , HttpStatus.OK);
 	}
@@ -115,7 +116,7 @@ public class LibraryController {
 	public ResponseEntity<String> doReturn(
 			@RequestParam String userId,
 			@RequestParam String bookId
-	){
+	) throws CustomException {
 		libraryService.returnBook(userId, bookId);
 		return new ResponseEntity<>("Book " + bookId + " successfully borrowed by " + userId , HttpStatus.OK);
 	}
