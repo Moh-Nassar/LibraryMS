@@ -18,6 +18,8 @@ public interface BookService {
 
 	Book getBookById(String id) throws CustomException;
 
+	List<Book> getBookByTitle(String title) throws CustomException;
+
 	Book updateBook(Book book) throws CustomException;
 
 	void deleteBook(String id) throws CustomException;

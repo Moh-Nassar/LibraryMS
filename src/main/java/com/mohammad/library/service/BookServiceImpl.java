@@ -56,6 +56,17 @@ public class BookServiceImpl implements BookService {
 	}
 
 	/**
+	 * Get books providing title.
+	 *
+	 * @param title
+	 * @return list of books with that name
+	 */
+	public List<Book> getBookByTitle(String title) throws CustomException {
+		List<Book> books = bookRepository.findByTitle(title);
+		return books;
+	}
+
+	/**
 	 * Update existing book
 	 * @param book
 	 * @return

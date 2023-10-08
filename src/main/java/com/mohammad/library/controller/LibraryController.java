@@ -98,6 +98,20 @@ public class LibraryController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	@GetMapping("/book/byTitle")
+	public ResponseEntity<Map<String, List<Book>>> doGetByName(
+			@RequestParam String title
+	) throws CustomException {
+		Map<String, List<Book>> response = new HashMap<>();
+
+		List<Book> books = bookService.getBookByTitle(title);
+		if (books == null) {
+			return new ResponseEntity<>(new HashMap<>(), HttpStatus.NOT_FOUND);
+		}
+		response.put("Book", books);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
 	/**
 	 * Update existing book
 	 * @param bookJSON JSON String of the book to be saved

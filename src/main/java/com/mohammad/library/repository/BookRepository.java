@@ -12,4 +12,7 @@ import java.util.List;
 public interface BookRepository extends MongoRepository<Book, ObjectId> {
 	@Query("{quantity: {$gt: 0}}")
 	List<Book> availableBooks();
+
+	@Query("{title: ?0}")
+	List<Book> findByTitle(String title);
 }
