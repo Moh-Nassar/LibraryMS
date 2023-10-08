@@ -20,7 +20,7 @@ public interface BookService {
 
 	Book updateBook(Book book) throws CustomException;
 
-	void deleteBook(String id);
+	void deleteBook(String id) throws CustomException;
 
 	boolean isAvailable(int quantity);
 

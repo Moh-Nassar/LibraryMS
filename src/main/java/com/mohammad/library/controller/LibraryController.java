@@ -35,21 +35,35 @@ public class LibraryController {
 
 	@Autowired
 	LibraryService libraryService;
+
 	@GetMapping("/test")
 	public String test(){
 		return "Hello Library";
 	}
 
+	/**
+	 * Get all books exists in the DB
+	 * @return
+	 */
 	@GetMapping("/book/all")
 	public List<Book> getAll(){
 		return bookService.getAllBooks();
 	}
 
+	/**
+	 * Get all books available to be borrowed
+	 * @return
+	 */
 	@GetMapping("/book/allAvailable")
 	public List<Book> getAllAvailable(){
 		return bookService.getAvailableBooks();
 	}
 
+	/**
+	 * Add new Book
+	 * @param bookJSON
+	 * @return
+	 */
 	@PostMapping("/book/save")
 	public ResponseEntity<String> doSave(
 			@RequestBody String bookJSON
@@ -64,6 +78,12 @@ public class LibraryController {
 		return new ResponseEntity<>("Book added successfully!", HttpStatus.valueOf(200));
 	}
 
+	/**
+	 * Get Book by ID
+	 * @param id
+	 * @return
+	 * @throws CustomException
+	 */
 	@GetMapping("/book/byId")
 	public ResponseEntity<Map<String, Book>> doGetById(
 			@RequestParam String id
@@ -78,6 +98,12 @@ public class LibraryController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
+	/**
+	 * Update existing book
+	 * @param bookJSON JSON String of the book to be saved
+	 * @return
+	 * @throws CustomException
+	 */
 	@PutMapping("/book/update")
 	public ResponseEntity<String> doUpdateBook(
 			@RequestBody String bookJSON
@@ -95,14 +121,27 @@ public class LibraryController {
 		return new ResponseEntity<>("Book updated successfully!", HttpStatus.OK);
 	}
 
+	/**
+	 * Delete Book from the DB by its ID
+	 * @param id
+	 * @return
+	 * @throws CustomException
+	 */
 	@DeleteMapping("/book/delete")
 	public ResponseEntity<String> doDeleteBook(
 			@RequestParam String id
-	){
+	) throws CustomException {
 		bookService.deleteBook(id);
 		return new ResponseEntity<>("Book deleted successfully", HttpStatus.OK);
 	}
 
+	/**
+	 * Borrow a book
+	 * @param userId user Id that borrows
+	 * @param bookId book Id that is borrowed
+	 * @return
+	 * @throws CustomException
+	 */
 	@PostMapping("/borrow")
 	public ResponseEntity<String> doBorrow(
 			@RequestParam String userId,
@@ -112,6 +151,13 @@ public class LibraryController {
 		return new ResponseEntity<>("Book " + bookId + " successfully borrowed by " + userId , HttpStatus.OK);
 	}
 
+	/**
+	 * Return already borrowed Book
+	 * @param userId
+	 * @param bookId
+	 * @return
+	 * @throws CustomException
+	 */
 	@PostMapping("/return")
 	public ResponseEntity<String> doReturn(
 			@RequestParam String userId,

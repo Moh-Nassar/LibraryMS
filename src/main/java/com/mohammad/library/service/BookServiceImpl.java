@@ -71,9 +71,9 @@ public class BookServiceImpl implements BookService {
 	 * Delete existing Book.
 	 * @param id
 	 */
-	public void deleteBook(String id) {
+	public void deleteBook(String id) throws CustomException {
 		if (!ObjectId.isValid(id)) {
-			return;
+			throw new CustomException("Book Id is not valid!", HttpStatus.BAD_REQUEST);
 		}
 		ObjectId objectId = new ObjectId(id);
 		bookRepository.deleteById(objectId);
